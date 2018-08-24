@@ -1,12 +1,38 @@
 from rest_framework import serializers
-from .models import Flexer
+
+from .models import FlexUser, Flex
 
 
-class FlexerSerializer(serializers.ModelSerializer):
+class FlexUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Flexer
-        exclude = ['id', 'token']
+        model = FlexUser
+        fields = [
+            'first_name',
+            'last_name',
+            'username',
+            'bio',
+            'phone',
+        ]
 
 
+class FlexSerializer(serializers.ModelSerializer):
+    owner = FlexUserSerializer()
+    members_count = serializers.IntegerField(source='get_members_count')
+    followed_count = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Flex
+        exclude = ['members']
+
+    def get_followed_count(self, obj):
+        """
+        Count user's friends which already members in this flex.
+        :param obj:
+        :return: int:
+        """
+
+        user_followed = self.context.get('request').user.followed.all()
+        flex_members = obj.members.all()
+        return user_followed.intersection(flex_members).count()
 
 

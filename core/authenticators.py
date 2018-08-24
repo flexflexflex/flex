@@ -1,5 +1,5 @@
 from rest_framework import authentication, exceptions
-from apps.flexer.models import Flexer
+from apps.flexer.models import FlexUser
 
 
 class TokenAuthenticator(authentication.BaseAuthentication):
@@ -10,8 +10,8 @@ class TokenAuthenticator(authentication.BaseAuthentication):
             raise exceptions.AuthenticationFailed('No token')
 
         try:
-            user = Flexer.objects.get(token=token)
-        except Flexer.DoesNotExist:
+            user = FlexUser.objects.get(token=token)
+        except FlexUser.DoesNotExist:
             raise exceptions.AuthenticationFailed('Token is invalid or expired')
 
         return (user, None)

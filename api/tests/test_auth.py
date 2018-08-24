@@ -1,8 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.flexer.models import FlexUser
 from core.redis_cli import cli as redis
-from apps.flexer.models import Flexer
 
 
 class RegisterTestCase(TestCase):
@@ -35,6 +35,6 @@ class RegisterTestCase(TestCase):
         response = self.client.post(self.token_url, data)
 
         token = response.json().get('token')
-        flexer = Flexer.objects.get(phone=self.phone)
+        flex_user = FlexUser.objects.get(phone=self.phone)
 
-        assert token == flexer.token, '%s %s' % (token, flexer.token)
+        assert token == flex_user.token, '%s %s' % (token, flex_user.token)
