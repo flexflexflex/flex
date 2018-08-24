@@ -10,7 +10,7 @@ class Redis:
         return self.redis.get(key).decode("utf-8")
 
     def set(self, key: str, val: str, ttl=0):
-        return self.redis.set(key, val)
+        return self.redis.set(key, val, 1000)
 
 
 host = settings.REDIS.get('HOST')
