@@ -2,8 +2,8 @@
 
 ## Installation
 * Clone repo `git clone https://github.com/flexflexflex/flex.git`
-* Create venv and nstall requirements `pip install -r requirements.txt`
-* Run app `python manage.py runserver`
+* Run `docker-compose up`
+* Chill
 ##
 
 # Auth

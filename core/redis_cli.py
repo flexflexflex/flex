@@ -3,8 +3,8 @@ from django.conf import settings
 
 
 class Redis:
-    def __init__(self, host, port):
-        self.redis = redis.Redis(host=host, port=port, db=0)
+    def __init__(self, host):
+        self.redis = redis.Redis(host, db=0)
 
     def get(self, key: str) -> str:
         val = self.redis.get(key)
@@ -15,8 +15,7 @@ class Redis:
 
 
 host = settings.REDIS.get('HOST')
-port = settings.REDIS.get('PORT')
-cli = Redis(host, port)
+cli = Redis(host)
 
 
 

@@ -133,6 +133,5 @@ REST_FRAMEWORK = {
 
 # Redis
 REDIS = {
-    'HOST': os.environ.get('REDIS_HOST', 'localhost'),
-    'PORT': os.environ.get('REDIS_PORT', 6339),
+    'HOST': os.environ.get('REDIS_HOST', 'redis'),
 }
