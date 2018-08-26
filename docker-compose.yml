@@ -1,0 +1,25 @@
+version: "2"
+services:
+  nginx:
+    image: nginx:1.11
+    volumes:
+      - ./deploy/conf.d:/etc/nginx/conf.d
+      - ./static:/opt/backend/static
+      - ../media:/opt/backend/media
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./
+      dockerfile: deploy/Dockerfile
+    command: >
+      bash -c "
+        python3 manage.py migrate &&
+        gunicorn --reload -b 0.0.0.0:8000 flex.wsgi --workers 4 --timeout 300 --log-level DEBUG
+      "
+    ports:
+      - "8000:8050"
