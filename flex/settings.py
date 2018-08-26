@@ -125,6 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = './static'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
@@ -133,6 +134,5 @@ REST_FRAMEWORK = {
 
 # Redis
 REDIS = {
-    'HOST': os.environ.get('REDIS_HOST', 'localhost'),
-    'PORT': os.environ.get('REDIS_PORT', 6339),
+    'HOST': os.environ.get('REDIS_HOST', 'redis'),
 }

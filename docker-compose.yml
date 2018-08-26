@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 services:
   nginx:
     image: nginx:1.11
@@ -9,6 +9,8 @@ services:
     restart: always
     ports:
       - "80:80"
+    networks:
+      - flex
     depends_on:
       - backend
 
@@ -19,7 +21,24 @@ services:
     command: >
       bash -c "
         python3 manage.py migrate &&
+        python3 manage.py collectstatic --no-input &&
         gunicorn --reload -b 0.0.0.0:8000 flex.wsgi --workers 4 --timeout 300 --log-level DEBUG
       "
     ports:
       - "8000:8050"
+    networks:
+      - flex
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:4.0.5-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    hostname: redis
+    networks:
+      - flex
+    volumes:
+      - ../data/redis:/data
+
+networks:
+  flex:
