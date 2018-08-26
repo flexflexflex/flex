@@ -1,6 +1,6 @@
 from django.urls import path, include
 
-from apps.flexer.views import GenerateCode, GenerateToken, UserReadUpdateView, FlexListView
+from apps.flexer.views import GenerateCode, GenerateToken, UserReadUpdateView, FlexView
 
 app_name = 'v1'
 
@@ -11,7 +11,7 @@ auth_urls = [
 ]
 
 flex_urls = [
-    path('', FlexListView.as_view(), name='list')
+    path('', FlexView.as_view(), name='list')
 ]
 
 urlpatterns = [

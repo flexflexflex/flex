@@ -7,7 +7,7 @@ class FlexUser(models.Model):
     bio = models.CharField(max_length=200, default='')
 
     phone = models.CharField(max_length=12)
-    username = models.CharField(max_length=10, default='', unique=True)
+    username = models.CharField(max_length=10, null=True, unique=True)
 
     token = models.CharField(max_length=32, default='', unique=True)
     followed = models.ManyToManyField(to='FlexUser', blank=True)
@@ -24,6 +24,7 @@ class Flex(models.Model):
     owner = models.ForeignKey(to='FlexUser', on_delete=models.CASCADE)
     members = models.ManyToManyField(to='FlexUser', related_name='members')
 
+    title = models.CharField(max_length=200, default='')
     description = models.TextField()
 
     class Meta:

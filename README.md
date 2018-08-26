@@ -4,12 +4,9 @@
 * Clone repo `git clone https://github.com/flexflexflex/flex.git`
 * Create venv and nstall requirements `pip install -r requirements.txt`
 * Run app `python manage.py runserver`
-
-## API docs
-
-## Auth
-Here is all api endpoints documentation.
 ##
+
+# Auth
 **POST /api/v1/auth/code/** 
 
 Request:
@@ -25,8 +22,8 @@ Response:
  "result": "ok"
 } 
 ```
-
 ##
+
 **POST /api/v1/auth/token/** 
 
 Request:
@@ -36,8 +33,8 @@ Request:
  "code": "0000"
 }
 ```
-Response:
 
+Response:
 ```json
 {
  "new_user": false,
@@ -60,12 +57,11 @@ Response:
 ```
 
 ##
-## Flex
+# Flex
 
 **GET /api/v1/flex/** 
 
 Response:
-
 ```json
 {
     "count": 1,
@@ -83,9 +79,39 @@ Response:
             },
             "members_count": 1,
             "friends_count": 0,
-            "description": "123123123123"
+            "description": "123123123123",
+            "title": "123123123"
         }
     ]
+}
+```
+
+##
+**POST /api/v1/flex/** 
+
+Request:
+```json
+{
+	"title": "test",
+	"description": "Huyna"
+}
+```
+
+Response:
+```json
+{
+    "id": 15,
+    "owner": {
+        "first_name": "Хуй",
+        "last_name": "Сасатб",
+        "username": "xyarim",
+        "bio": "huy",
+        "phone": "998909999999"
+    },
+    "members_count": 0,
+    "followed_count": 0,
+    "title": "test",
+    "description": "Huyna"
 }
 ```
 

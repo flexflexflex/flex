@@ -7,7 +7,8 @@ class Redis:
         self.redis = redis.Redis(host=host, port=port, db=0)
 
     def get(self, key: str) -> str:
-        return self.redis.get(key).decode("utf-8")
+        val = self.redis.get(key)
+        return val.decode("utf-8") if val else None
 
     def set(self, key: str, val: str, ttl=0):
         return self.redis.set(key, val, 1000)
