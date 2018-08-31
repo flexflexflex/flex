@@ -9,10 +9,12 @@ class TokenAuthenticator(authentication.BaseAuthentication):
         if not token:
             raise exceptions.AuthenticationFailed('Token is not provided')
 
+        token = token.replace('Token ', '')
+
         try:
             user = FlexUser.objects.get(token=token)
         except FlexUser.DoesNotExist:
-            raise exceptions.AuthenticationFailed('Token is invalid or expired')
+            raise exceptions.AuthenticationFailed('Token is invalid or expired. Your token: %s' % token)
 
         return user, None
 

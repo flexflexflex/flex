@@ -18,7 +18,7 @@ class FlexUser(models.Model):
         verbose_name_plural = 'Users'
 
     def __str__(self):
-        return self.username
+        return self.username or '-'
 
 
 class Flex(models.Model):
@@ -35,7 +35,7 @@ class Flex(models.Model):
         verbose_name_plural = 'Flexes'
 
     def __str__(self):
-        return '%s : %s' % ('Flex', self.owner.username or "")
+        return '%s : %s' % ('Flex', self.owner.username or '-')
 
     def get_members_count(self):
         return self.members.count()

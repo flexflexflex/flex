@@ -13,6 +13,8 @@ class GenerateTokenSerializer(serializers.Serializer):
 
 
 class FlexUserSerializer(serializers.ModelSerializer):
+    phone = serializers.CharField(read_only=True)
+
     class Meta:
         model = FlexUser
         fields = [
@@ -25,7 +27,7 @@ class FlexUserSerializer(serializers.ModelSerializer):
 
 
 class FlexSerializer(serializers.ModelSerializer):
-    owner = FlexUserSerializer(required=False)
+    owner = FlexUserSerializer(required=False, read_only=True)
     members_count = serializers.IntegerField(source='get_members_count', read_only=True)
     followed_count = serializers.SerializerMethodField(read_only=True)
     created_at = serializers.DateTimeField(read_only=True, required=False)
