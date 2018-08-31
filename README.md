@@ -122,6 +122,27 @@ Response:
 ```
 
 ##
+**GET /api/v1/flex/:id/**
+
+Response:
+```json
+{
+    "id": 1,
+    "owner": {
+        "first_name": "Арслан",
+        "last_name": "Тажибаев",
+        "username": "xyarim",
+        "bio": "huy",
+        "phone": "998909999999"
+    },
+    "members_count": 1,
+    "friends_count": 0,
+    "description": "123123123123",
+    "title": "123123123"
+}
+```
+
+##
 **POST /api/v1/flex/** 
 
 Request:
@@ -149,6 +170,7 @@ Response:
     "description": "Huyna"
 }
 ```
+
 
 
 
