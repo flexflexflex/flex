@@ -1,0 +1,2 @@
+GET http://localhost/api/v1/flex/
+Authorization: q3uUBklIqlX8bbw1zBGIiFe77

@@ -19,6 +19,7 @@ class FlexSerializer(serializers.ModelSerializer):
     owner = FlexUserSerializer(required=False)
     members_count = serializers.IntegerField(source='get_members_count', read_only=True)
     followed_count = serializers.SerializerMethodField(read_only=True)
+    created_at = serializers.DateTimeField(read_only=True, required=False)
 
     class Meta:
         model = Flex

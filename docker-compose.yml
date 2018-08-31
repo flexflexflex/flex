@@ -26,6 +26,8 @@ services:
       "
     ports:
       - "8000:8050"
+    volumes:
+      - .:/code
     networks:
       - flex
     depends_on:

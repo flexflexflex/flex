@@ -57,6 +57,41 @@ Response:
 ```
 
 ##
+
+**GET /api/v1/auth/check/:username/**
+
+Response:
+```json
+{
+    "valid": true
+}
+```
+
+##
+
+**PATCH /api/v1/auth/user/**
+
+Request:
+```json
+{
+    "first_name": "Хуй",
+    "last_name": "Сасатб",
+    "username": "xyarim"
+}
+```
+
+Response:
+```json
+{
+    "first_name": "Хуй",
+    "last_name": "Сасатб",
+    "username": "xyarim",
+    "bio": "huy",
+    "phone": "998909999999"
+}
+```
+
+##
 # Flex
 
 **GET /api/v1/flex/** 
