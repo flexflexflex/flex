@@ -3,7 +3,18 @@ from rest_framework import serializers
 from .models import FlexUser, Flex
 
 
+class GenerateCodeSerializer(serializers.Serializer):
+    phone = serializers.CharField(max_length=12, min_length=12)
+
+
+class GenerateTokenSerializer(serializers.Serializer):
+    code = serializers.CharField(max_length=4, min_length=4)
+    phone = serializers.CharField(max_length=12, min_length=12)
+
+
 class FlexUserSerializer(serializers.ModelSerializer):
+    phone = serializers.CharField(read_only=True)
+
     class Meta:
         model = FlexUser
         fields = [
@@ -16,7 +27,7 @@ class FlexUserSerializer(serializers.ModelSerializer):
 
 
 class FlexSerializer(serializers.ModelSerializer):
-    owner = FlexUserSerializer(required=False)
+    owner = FlexUserSerializer(required=False, read_only=True)
     members_count = serializers.IntegerField(source='get_members_count', read_only=True)
     followed_count = serializers.SerializerMethodField(read_only=True)
     created_at = serializers.DateTimeField(read_only=True, required=False)

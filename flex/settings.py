@@ -40,10 +40,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'coreapi',
     'rest_framework',
 
-    'apps.flexer'
+    'apps.flexer',
+    'core'
+
 ]
+
+DEFAULT_AUTHENTICATION_CLASSES = (
+    'rest_framework.authentication.SessionAuthentication',
+    'rest_framework.authentication.BasicAuthentication'
+),
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -119,6 +127,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+USE_X_FORWARDED_HOST = True
 
 
 # Static files (CSS, JavaScript, Images)
