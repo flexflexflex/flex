@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class FlexUser(models.Model):
@@ -22,17 +23,19 @@ class FlexUser(models.Model):
 
 class Flex(models.Model):
     owner = models.ForeignKey(to='FlexUser', on_delete=models.CASCADE)
-    members = models.ManyToManyField(to='FlexUser', related_name='members')
+    members = models.ManyToManyField(to='FlexUser', related_name='members', blank=True)
 
-    title = models.CharField(max_length=200, default='')
-    description = models.TextField()
+    title = models.CharField(max_length=200)
+    description = models.CharField(default='', blank=True, max_length=120)
+
+    created_at = models.DateTimeField(default=timezone.now)
 
     class Meta:
         verbose_name = 'Flex'
         verbose_name_plural = 'Flexes'
 
     def __str__(self):
-        return '%s : %s' % ('Flex', self.owner.username)
+        return '%s : %s' % ('Flex', self.owner.username or "")
 
     def get_members_count(self):
         return self.members.count()
