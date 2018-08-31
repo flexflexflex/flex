@@ -3,6 +3,15 @@ from rest_framework import serializers
 from .models import FlexUser, Flex
 
 
+class GenerateCodeSerializer(serializers.Serializer):
+    phone = serializers.CharField(max_length=12, min_length=12)
+
+
+class GenerateTokenSerializer(serializers.Serializer):
+    code = serializers.CharField(max_length=4, min_length=4)
+    phone = serializers.CharField(max_length=12, min_length=12)
+
+
 class FlexUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = FlexUser
