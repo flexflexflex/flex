@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from django.utils import timezone
 
 
@@ -11,7 +11,12 @@ class FlexUser(models.Model):
     username = models.CharField(max_length=10, null=True, unique=True)
 
     token = models.CharField(max_length=32, default='', unique=True)
-    followed = models.ManyToManyField(to='FlexUser', blank=True)
+    friends = models.ManyToManyField(to='FlexUser', blank=True)
+
+    def add_friend(self, user):
+        with transaction.atomic():
+            self.friends.add(user)
+            user.friends.add(self)
 
     class Meta:
         verbose_name = 'User'
