@@ -15,7 +15,7 @@ class FlexModelForm(forms.ModelForm):
 @admin.register(FlexUser)
 class FlexUserAdmin(admin.ModelAdmin):
     list_display = ['username', 'first_name', 'last_name', 'token']
-    filter_horizontal = ['followed']
+    filter_horizontal = ['friends']
 
 
 @admin.register(Flex)
