@@ -137,6 +137,9 @@ USE_X_FORWARDED_HOST = True
 STATIC_URL = '/static/'
 STATIC_ROOT = './static'
 
+MEDIA_ROOT = '../media'
+MEDIA_URL = '/media/'
+
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100

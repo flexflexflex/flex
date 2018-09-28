@@ -1,5 +1,7 @@
 from django.db import models, transaction
 from django.utils import timezone
+from imagekit.processors import ResizeToFit
+from imagekit.models import ProcessedImageField
 
 
 class FlexUser(models.Model):
@@ -32,6 +34,8 @@ class Flex(models.Model):
 
     title = models.CharField(max_length=200)
     description = models.CharField(default='', blank=True, max_length=120)
+
+    image = ProcessedImageField(processors=[ResizeToFit(width=500, upscale=False)])
 
     created_at = models.DateTimeField(default=timezone.now)
 
