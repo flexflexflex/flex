@@ -39,6 +39,9 @@ class Flex(models.Model):
 
     created_at = models.DateTimeField(default=timezone.now)
 
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+
     class Meta:
         verbose_name = 'Flex'
         verbose_name_plural = 'Flexes'
