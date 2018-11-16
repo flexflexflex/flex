@@ -1,10 +1,16 @@
 from django.db import models, transaction
 from django.utils import timezone
-from imagekit.processors import ResizeToFit
 from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFit
+
+from core.fcm import send_push
 
 
 class FlexUser(models.Model):
+    photo = ProcessedImageField(processors=[ResizeToFit(width=800, upscale=False)],
+                                blank=True,
+                                null=True)
+
     first_name = models.CharField(max_length=50, default='')
     last_name = models.CharField(max_length=50, default='')
     bio = models.CharField(max_length=200, default='')
@@ -15,10 +21,19 @@ class FlexUser(models.Model):
     token = models.CharField(max_length=32, default='', unique=True)
     friends = models.ManyToManyField(to='FlexUser', blank=True)
 
+    fcm_registration_id = models.CharField(max_length=100, blank=True, null=True)
+
     def add_friend(self, user):
         with transaction.atomic():
             self.friends.add(user)
             user.friends.add(self)
+
+    def send_push(self, title, text):
+        send_push(
+            self.fcm_registration_id,
+            title,
+            text
+        )
 
     class Meta:
         verbose_name = 'User'
