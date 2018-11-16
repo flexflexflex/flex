@@ -1,6 +1,6 @@
 from fabric import Connection
 
-HOST = '18.224.29.19'
+HOST = '18.223.15.54'
 KEY_PATH = '/Users/kensay/.ssh/flex.pem'
 
 con = Connection(HOST, connect_kwargs={
