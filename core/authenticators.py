@@ -7,11 +7,14 @@ class TokenAuthenticator(authentication.BaseAuthentication):
         token = request.META.get('HTTP_AUTHORIZATION')
 
         if not token:
-            raise exceptions.AuthenticationFailed('No token')
+            raise exceptions.AuthenticationFailed('Token is not provided')
+
+        token = token.replace('Token ', '')
 
         try:
             user = FlexUser.objects.get(token=token)
         except FlexUser.DoesNotExist:
-            raise exceptions.AuthenticationFailed('Token is invalid or expired')
+            raise exceptions.AuthenticationFailed('Token is invalid or expired. Your token: %s' % token)
 
-        return (user, None)
+        return user, None
+

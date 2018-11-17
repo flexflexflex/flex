@@ -40,10 +40,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'coreapi',
     'rest_framework',
 
-    'apps.flexer'
+    'apps.flexer',
+    'core'
+
 ]
+
+DEFAULT_AUTHENTICATION_CLASSES = (
+    'rest_framework.authentication.SessionAuthentication',
+    'rest_framework.authentication.BasicAuthentication'
+),
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -120,11 +128,17 @@ USE_L10N = True
 
 USE_TZ = True
 
+USE_X_FORWARDED_HOST = True
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = './static'
+
+MEDIA_ROOT = '../media'
+MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
@@ -133,6 +147,5 @@ REST_FRAMEWORK = {
 
 # Redis
 REDIS = {
-    'HOST': os.environ.get('REDIS_HOST', 'localhost'),
-    'PORT': os.environ.get('REDIS_PORT', 6339),
+    'HOST': os.environ.get('REDIS_HOST', 'redis'),
 }
