@@ -23,7 +23,8 @@ class FlexUserSerializer(serializers.ModelSerializer):
             'username',
             'bio',
             'phone',
-            'photo'
+            'photo',
+            'fcm_registration_id'
         ]
 
 

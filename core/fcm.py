@@ -1,6 +1,8 @@
 from pyfcm import FCMNotification
 
-push_service = FCMNotification(api_key="<api-key>")
+push_service = FCMNotification(
+    api_key="AAAABZoVnv0:APA91bHc842kZA4KPGQbFSTMhAFvOVdi-0BHb8-j4Grji6Yn2fj8AQDa2ZXpusjv8hlz8Nfv58KAGxrXYhViEagcjU2n6svx0sWrxVq0gwjR2bn4E9fBisZ5yU9hBHnqK85XESP4Nhph"
+)
 # Your api-key can be gotten from:  https://console.firebase.google.com/project/<project-name>/settings/cloudmessaging
 
 
