@@ -36,7 +36,6 @@ class FlexListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Flex
-        exclude = ['members']
 
     def get_friends_count(self, obj):
         """

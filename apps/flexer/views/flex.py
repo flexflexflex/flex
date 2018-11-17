@@ -30,5 +30,4 @@ class JoinFlexView(APIView):
             }, 404)
 
         flex.members.add(request.user)
-        request.user.send_push('Flex', 'You are accepted to %s\'s flex' % flex.owner)
         return Response(FlexDetailSerializer(flex, context={'request': request}).data)

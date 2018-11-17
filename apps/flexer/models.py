@@ -49,7 +49,7 @@ class Flex(models.Model):
     members = models.ManyToManyField(to='FlexUser', related_name='members', blank=True)
 
     title = models.CharField(max_length=200)
-    description = models.CharField(default='', blank=True, max_length=120)
+    description = models.CharField(default='', blank=True, max_length=300)
 
     image = ProcessedImageField(processors=[ResizeToFit(width=500, upscale=False)])
 
