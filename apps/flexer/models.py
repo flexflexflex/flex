@@ -21,18 +21,19 @@ class FlexUser(models.Model):
     token = models.CharField(max_length=32, default='', unique=True)
     friends = models.ManyToManyField(to='FlexUser', blank=True)
 
-    fcm_registration_id = models.CharField(max_length=100, blank=True, null=True)
+    fcm_registration_id = models.CharField(max_length=200, blank=True, null=True)
 
     def add_friend(self, user):
         with transaction.atomic():
             self.friends.add(user)
             user.friends.add(self)
 
-    def send_push(self, title, text):
+    def send_push(self, title, text, extra):
         send_push(
             self.fcm_registration_id,
             title,
-            text
+            text,
+            extra
         )
 
     class Meta:
