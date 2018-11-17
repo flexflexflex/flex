@@ -36,6 +36,7 @@ class FlexListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Flex
+        fields = '__all__'
 
     def get_friends_count(self, obj):
         """
