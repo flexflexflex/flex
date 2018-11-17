@@ -12,6 +12,7 @@ class FlexUserSerializer(serializers.ModelSerializer):
             'username',
             'bio',
             'phone',
+            'photo'
         ]
 
 
