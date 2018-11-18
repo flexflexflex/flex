@@ -4,7 +4,21 @@ from rest_framework.viewsets import ModelViewSet
 
 from core.authenticators import TokenAuthenticator
 from ..models import Flex
-from ..serializers import FlexListSerializer, FlexDetailSerializer
+from ..serializers import FlexListSerializer, FlexDetailSerializer, FlexUserSerializer
+
+
+class FlexMembersView(APIView):
+    authentication_classes = [TokenAuthenticator, ]
+
+    def get(self, request, pk):
+        try:
+            flex = Flex.objects.get(id=pk)
+        except Flex.DoesNotExist:
+            return Response({
+                'error': 'Flex with id %s not found' % pk
+            }, 404)
+
+        return Response(FlexUserSerializer(flex.members, many=True, context={'request': request}).data)
 
 
 class FlexView(ModelViewSet):

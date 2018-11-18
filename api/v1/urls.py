@@ -6,7 +6,8 @@ from apps.flexer.views import (GenerateCode,
                                FriendsViewSet,
                                FlexView,
                                CheckUsernameView,
-                               JoinFlexView)
+                               JoinFlexView,
+                               FlexMembersView)
 
 app_name = 'v1'
 
@@ -17,6 +18,7 @@ auth_urls = [
 ]
 
 flex_urls = [
+    path('<int:pk>/members/', FlexMembersView.as_view(), name='members'),
     path('<int:pk>/join/', JoinFlexView.as_view(), name='join'),
     path('<int:pk>/', FlexView.as_view({'get': 'retrieve', 'patch': 'update'}), name='details-update'),
     path('', FlexView.as_view({'get': 'list', 'post': 'create'}), name='list-create'),
