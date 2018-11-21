@@ -137,6 +137,10 @@ USE_X_FORWARDED_HOST = True
 STATIC_URL = '/static/'
 STATIC_ROOT = './static'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "website/static"),
+]
+
 MEDIA_ROOT = '../media'
 MEDIA_URL = '/media/'
 
