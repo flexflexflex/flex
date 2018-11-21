@@ -149,5 +149,5 @@ local_settings.py
 
 .env
 venv/
-static/
+/static/
 db.sqlite3
